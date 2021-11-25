@@ -48,7 +48,10 @@ export class AjoutCellierComponent implements OnInit {
 
     // Fonction qui permet l'ajout d'un nouveau cellier par un utilisateur authentifie
     postCellier(cellier: any) {
-        console.log(cellier)
+
+        if(cellier.nom == ""){
+            return;
+        }
 
         if(cellier.nom == ""){
             return;
@@ -57,7 +60,6 @@ export class AjoutCellierComponent implements OnInit {
         this.idUtilisateur = this.servAuth.getIdUtilisateurAuthentifie();
 
         this.nouveauCellier = { ...cellier, "users_id": this.idUtilisateur }
-
 
         this.servBouteilleDeVin.ajoutCellier(this.nouveauCellier)
             .subscribe(() => {
@@ -68,7 +70,6 @@ export class AjoutCellierComponent implements OnInit {
 
                 this.chargerCelliers.emit();
             });
-
     }
 
 }
