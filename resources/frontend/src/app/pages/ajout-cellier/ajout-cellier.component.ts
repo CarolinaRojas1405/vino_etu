@@ -50,6 +50,10 @@ export class AjoutCellierComponent implements OnInit {
     postCellier(cellier: any) {
         console.log(cellier)
 
+        if(cellier.nom == ""){
+            return;
+        }
+
         this.idUtilisateur = this.servAuth.getIdUtilisateurAuthentifie();
 
         this.nouveauCellier = { ...cellier, "users_id": this.idUtilisateur }
